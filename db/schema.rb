@@ -10,6 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_06_11_191604) do
+
+  create_table "channel_memberships", force: :cascade do |t|
+    t.integer "channel_id"
+    t.integer "player_id"
+    t.index ["channel_id"], name: "index_channel_memberships_on_channel_id"
+    t.index ["player_id"], name: "index_channel_memberships_on_player_id"
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "player_id"
+    t.index ["player_id"], name: "index_messages_on_player_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+  end
 
 end

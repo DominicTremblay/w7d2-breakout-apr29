@@ -1,6 +1,8 @@
 class Message < ActiveRecord::Base
 
-  validates :content, presence: true, length: { maximum: 140 }
-  validates :author, presence: true, length: { maximum: 25 }
+  belongs_to :player
+
+  validates :title, :content, :url, :player,  presence: true
+
   
 end
